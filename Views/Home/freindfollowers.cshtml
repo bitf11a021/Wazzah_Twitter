@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "freindfollowers";
+}
+
+
+
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+               <table>
+                <tr>
+                    
+                    <td style="font-size:15px">NAME</td>
+                    
+                </tr>
+
+               @foreach (var s in Model)
+                {
+                    <tr>
+                        
+                        <td>@s.uname</td>                       
+                      @*  <td><a href="/Home/unfollow/?fid=@s.Id">Unfollow</a></td>
+                         <td><a href="/Home/viewfriend/?fid=@s.Id">View Profile</a></td>*@
+                    </tr>
+                   
+                }
+            </table>
+                
+                    <form action="/Home/profile" method="post">
+                        <input type="submit" value="Back To Profile" />
+                    </form>
+
+

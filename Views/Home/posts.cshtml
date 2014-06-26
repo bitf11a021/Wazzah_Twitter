@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "posts";
+}
+
+
+@{
+    Layout = null;
+}
+
+
+@model twitter.Models.u
+
+<html>
+    <head>
+        <title>following</title>
+        </head>
+        <body>
+            <table>
+                <tr>
+                    
+                    
+                    <td>NAME</td>
+                    
+                </tr>
+
+               @foreach (var s in @ViewBag.x)
+                {
+                    <tr>
+                        
+                        <td>@s.p</td>
+                        
+                    </tr>
+                   
+                }
+            </table>
+
+                  <form action="/Home/profile" method="post">
+                <input type="submit" value="Back To Profile" />
+            </form>
+
+        </body>
+    
+</html>
+
