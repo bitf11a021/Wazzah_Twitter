@@ -1,0 +1,184 @@
+@model twitter.Models.u
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+
+        <meta charset="UTF-8" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+        <title>Login and Registration Form with HTML5 and CSS3</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <meta name="description" content="WELCOME TO FREIND ZONE" />
+        <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="~/content/demo.css" />
+        <link rel="stylesheet" type="text/css" href="~/content/style.css" />
+		<link rel="stylesheet" type="text/css" href="~/content/animate-custom.css" />
+        <script src="~/Scripts/jquery-1.7.1.js"></script>
+
+
+         <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+
+        <script src="~/Scripts/jquery.validate.js"></script>
+
+
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+
+
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+    </head>
+    <body>
+        <div class="container">
+            <!-- Codrops top bar -->
+            
+            <header>
+                <h1>WELCOME TO FRIENDS ZONE </h1>
+				
+            </header>
+            <section>				
+                <div id="container_demo" >
+                    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+
+                             @*  <form  action="/Home/signIn" autocomplete="on" method="post"> *@
+
+                              @using (Html.BeginForm("signIn", "Home",FormMethod.Post)){
+
+                         
+                                <h1>Log in</h1> 
+                                <p> 
+                                   @* <label for="username" class="uname" data-icon="u" > Your email or username </label>*@
+                                    @Html.Label("", "Your email or username")
+
+                                   @Html.TextBoxFor(m => m.uname, new { placeholder="myusername or mymail@mail.com",  @class = "uname" })
+                                    @Html.ValidationMessageFor(m=>m.uname)
+                                </p>
+
+
+
+                                <p> 
+                                   @* <label for="password" class="pwd" data-icon="p"> Your password </label>*@
+                                     @Html.Label("","Your password");
+                                     @Html.TextBoxFor(m => m.pwd, new { placeholder="eg. X8df!90EO", type="password" })
+                                    @Html.ValidationMessageFor(m=>m.pwd)
+                            
+                                </p>
+                                <p class="keeplogin"> 
+									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+									<label for="loginkeeping">Keep me logged in</label>
+								</p>
+                                <p class="login button"> 
+                                    <input type="submit" value="Login" /> 
+								</p>
+                                <p class="change_link">
+									Not a member yet ?
+									<a href="#toregister" class="to_register">Join us</a>
+								</p>
+                              }
+                            @*</form>*@
+                        </div>
+
+                        <div id="register" class="animate form">
+
+                            @using (Html.BeginForm("signUp", "Home",FormMethod.Post)){
+                             
+                            @*<form  action="/Home/signUp" method="post" autocomplete="on"> *@
+                                <h1> Sign up </h1> 
+                                <p> 
+                                    @*<label for="usernamesignup" class="uname" data-icon="u">Full Name</label>*@
+
+                                     @Html.Label("","Full Name")
+
+                                    @Html.TextBoxFor(m => m.fname, new { placeholder="Enter Full Name"} )
+                                    @Html.ValidationMessageFor(m=>m.fname)
+                                   
+                                </p>
+
+                                <p> 
+
+                                    @*<label for="usernamesignup" class="uname" data-icon="u">Username</label>*@
+                                     @Html.Label("","Username")
+                                    @* @Html.TextBoxFor(m => m.uname, new { placeholder="Enter User Name",required="required" })*@
+                                    <input id="username_name" name="uname" required="required" type="text" placeholder="Enter User Name" />
+
+                                    
+                                </p>
+
+                                  <p> 
+                                    <label for="usernamesignup" class="uname" >Check avalibility</label>
+                                    <button id="username_check" name="username_check" onclick="f1()"> Click Me </button>
+                                </p>
+
+
+                                <p> 
+                                  @*  <label for="passwordsignup" class="youpasswd" data-icon="p">Password </label>*@
+                                     @Html.Label("","Password")
+                                     @Html.TextBoxFor(m => m.pwd, new { placeholder="Enter your Password",type="password",required="required" })
+                                    @Html.ValidationMessageFor(m=>m.pwd)
+                                   @*  <input id="pwd" name="pwd" required="required" type="text" placeholder="Enter your password" />*@
+                                </p>
+                           
+
+                                
+
+                                <p> 
+                                   @* <label for="dateofbirth" class="youdateofbirth" data-icon="u">Your Date of Birth </label>*@
+                                     @Html.Label("","Your Date of Birth")
+                                    <input id="userdob" name="dob" required="required" type="date" />
+                                </p>
+
+                                 <p> 
+                                    @*<label for="usernamesignup" class="uname" data-icon="u">City</label>*@
+                                      @Html.Label("","City")
+                                    @*<input id="usercity" name="city" required="required" type="text" placeholder="Enter City" />*@
+                                       @Html.TextBoxFor(m => m.city, new { placeholder="Enter your City Name",required="required" })
+                                     @Html.ValidationMessageFor(m=>m.city)
+                                </p>
+    
+                                <p class="signin button"> 
+									<input type="submit" value="Sign up"/> 
+								</p>
+                                <p class="change_link">  
+									Already a member ?
+									<a href="#tologin" class="to_register"> Go and log in </a>
+								</p>
+                            }
+                            @*</form>*@
+                        </div>
+                     
+                    </div>
+                </div>  
+            </section>
+        </div>
+
+        <script>
+            function f1() {
+                $.getJSON("/Home/checkUserName?u=" + $('#username_name').val(), function (x) {
+
+                    if (x) {
+                        alert("Availiable");
+                    }
+                    else {
+                        alert("Not availiable");
+                    }
+                });
+            }
+         </script>
+    </body>
+</html>

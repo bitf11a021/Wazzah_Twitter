@@ -1,0 +1,166 @@
+﻿
+
+@model twitter.Models.u
+
+@{
+    ViewBag.Title = "profile";
+}
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Personal Website</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="~/Content/styleprofile.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="wrapper">
+  <h1><a href="#"><img src="~/images/logo.gif" width="177" height="36" alt="" /></a></h1>
+  <ul id="nav">
+
+   @*  <li>@Html.ActionLink("Followers", "followers", "Home", new { id= @ViewBag.x.user.Id })</li>*@
+
+    @*  <li class="b"><a href="/Home/followers">Followers</a></li>
+    <li class="a"><a href="/Home/following">Following</a></li>
+    <li class="d"><a href="/Home/editProfile">Edit Profile</a></li>*@
+
+
+       <li class="b"><a href="/Home/followers/@ViewBag.x.user.Id">Followers</a></li>
+    <li class="a"><a href="/Home/following/@ViewBag.x.user.Id">Following</a></li>
+    <li class="d"><a href="/Home/editProfile/@ViewBag.x.user.Id">Edit Profile</a></li>
+
+
+       <li>@Html.ActionLink("Logout", "Index", "Home")</li>
+
+
+    @*<li class="c"><a href="/Home/Index">Logout</a></li>*@ 
+
+   
+  
+  </ul>
+  <div id="body">
+    <div>
+      <div>
+        <div>
+
+            
+
+          <div class="inner"> <img src="~/images/@ViewBag.x.user.hint" width="194" height="299" alt="My photo" class="left" />
+            
+              
+             <input id="searchname" type="text" placeholder="Search People" name="name" required="required"/>
+                    <input type="button" value="Search" onclick="f1()"/>
+
+
+                
+                <div id="search1">
+
+                </div>
+
+
+              
+              <h2>WELCOME TO YOUR PROFILE</h2>
+
+         
+
+
+              <h3>@ViewBag.x.user.Id</h3>
+            <div class="indent">
+                <form action="/Home/post/@ViewBag.x.user.Id" autocomplete="on" >
+
+                    <p>TWEET HERE</p>
+
+                    <input type="text" placeholder="Your Tweet" name="post" required="required"/>
+                    <input type="submit" value="Tweet" />
+
+                </form>
+
+         
+
+            
+
+                  <table>
+               
+
+                    
+
+               @foreach (var s in @ViewBag.x.posts)
+                {
+                    <tr>
+                        
+                        <td>@s.p</td>
+                        <td><a href="/Home/deletepost/@s.Id">Delete</a></td>
+                        
+                    </tr>
+                   
+                }
+            </table>
+
+                      
+                <div id="posts">
+
+
+
+
+                </div>
+
+                
+            </div>
+            <div id="boxes">
+              <div>
+                <div class="inner">
+                  <div id="left">
+                    <div class="inner">
+                     
+                    </div>
+                  </div>
+                  <!-- end left -->
+                  <div id="right">
+                    
+                  </div>
+                  <!-- end right -->
+                  <div class="clear"></div>
+                </div>
+              </div>
+            </div>
+            <!-- end boxes -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end .inner -->
+  </div>
+  <!-- end body -->
+  <div id="footer"> Created By <a href="https://www.facebook.com/wazzah.iftikhar">WAZZAH IFTIKHAR</a> </div>
+    <li class="b"><a href="/AboutMe/facebook">WAZZAH FACEBOOK</a></li>
+    <li class="b"><a href="/AboutMe/about">ABOUT ME</a></li>
+  <!-- end footer -->
+</div>
+<!-- end wrapper -->
+
+    
+    <script>
+
+        function f1() {
+
+            $.getJSON("/Home/searchname?u=" + $('#searchname').val(), function (x) {
+                var y = $('#searchname').val();
+                
+                
+                if (x) {
+                    $("#search1").empty().append("<table><tr> <td> " + x + "  </td></tr> </table>");
+                }
+                else {
+                    $("#search1").append("<table><tr> <td>No data Availiable </td></tr> </table>");
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
